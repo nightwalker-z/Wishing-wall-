@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💕 A Note For You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#ff9ec4;
+  --pink-soft:#ffe3ef;
+  --lav:#d9ccff;
+  --mint:#bdf0dc;
+  --butter:#fff0b8;
+  --ink:#5a4a63;
+  --shadow:0 14px 40px rgba(214,160,200,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Quicksand',system-ui,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(160deg,#fff1f7 0%,#f4ecff 45%,#e9f8ff 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.9) 1.5px, transparent 1.6px);
+  background-size:26px 26px;opacity:.7;
+}
+
+/* ---------- floating background stickers ---------- */
+.bg-stickers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-stickers span{
+  position:absolute;font-size:2rem;opacity:.5;
+  animation:floaty 8s ease-in-out infinite;
+  filter:saturate(1.1);
+}
+@keyframes floaty{
+  0%,100%{transform:translateY(0) rotate(-8deg)}
+  50%{transform:translateY(-26px) rotate(8deg)}
+}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:30;display:flex;justify-content:center;padding:14px 12px 10px}
+.navbar{
+  display:flex;gap:4px;flex-wrap:wrap;justify-content:center;
+  background:rgba(255,255,255,.78);
+  border:2px solid #fff;border-radius:999px;padding:6px;
+  box-shadow:0 8px 26px rgba(255,143,184,.22);
+  backdrop-filter:blur(10px);
+}
+.navbar button{
+  font-family:inherit;font-weight:700;font-size:.9rem;
+  border:none;background:transparent;color:var(--ink);
+  padding:10px 16px;border-radius:999px;cursor:pointer;transition:.2s;
+  white-space:nowrap;
+}
+.navbar button:hover{background:#fff0f6;transform:translateY(-1px)}
+.navbar button.active{
+  background:linear-gradient(135deg,#ff9ec4,#ffc2dd);
+  color:#fff;box-shadow:0 6px 16px rgba(255,158,196,.45);
+}
+.navbar .music-btn{padding:10px 13px}
+
+/* ---------- pages ---------- */
+.page{display:none;position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:18px 18px 90px}
+.page.active{display:block;animation:pop .45s cubic-bezier(.22,1,.36,1)}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.card{
+  background:rgba(255,255,255,.82);
+  border:2px solid #fff;border-radius:30px;padding:clamp(20px,4vw,38px);
+  box-shadow:var(--shadow);backdrop-filter:blur(8px);
+}
+
+/* ---------- typography ---------- */
+h1,h2,h3{font-family:'Baloo 2',cursive;line-height:1.15}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.5rem,3.6vw,2.2rem);font-weight:700}
+.gradient-text{
+  background:linear-gradient(120deg,#ff7fb2,#c08bff 55%,#7fc8ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{font-size:1.05rem;line-height:1.65;opacity:.85}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.hero .cake{font-size:clamp(3.5rem,11vw,5.5rem);animation:bob 2.6s ease-in-out infinite;display:inline-block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+.badge{
+  display:inline-block;background:var(--butter);border:2px dashed #ffd77a;
+  padding:7px 16px;border-radius:999px;font-weight:700;font-size:.85rem;
+  transform:rotate(-1.5deg);
+}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+
+/* ---------- buttons ---------- */
+.btn{
+  font-family:inherit;font-weight:700;font-size:1rem;
+  border:none;border-radius:999px;padding:14px 26px;cursor:pointer;
+  transition:transform .18s, box-shadow .18s, background .18s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#ff9ec4,#ffb9d9);color:#fff;
+  box-shadow:0 10px 22px rgba(255,143,184,.4);
+}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 28px rgba(255,143,184,.5)}
+.btn-soft{
+  background:#fff;color:var(--ink);border:2px solid #ffd9e8;
+  box-shadow:0 8px 18px rgba(214,160,200,.18);
+}
+.btn-soft:hover{transform:translateY(-3px) scale(1.03);border-color:#ff9ec4}
+.btn:active{transform:translateY(0) scale(.98)}
+
+/* ---------- forms ---------- */
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.field label{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:6px}
+input[type=text],textarea{
+  width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+  padding:14px 16px;border-radius:18px;border:2px solid #ffd9e8;
+  background:#fff;outline:none;transition:.2s;resize:vertical;
+}
+input[type=text]:focus,textarea:focus{border-color:#ff9ec4;box-shadow:0 0 0 4px rgba(255,158,196,.18)}
+textarea{min-height:120px;line-height:1.55}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}}
+
+.picker{display:flex;flex-wrap:wrap;gap:8px}
+.sticker-opt{
+  font-size:1.5rem;width:50px;height:50px;border-radius:16px;cursor:pointer;
+  border:2px solid #ffe0ee;background:#fff;transition:.18s;
+  display:flex;align-items:center;justify-content:center;
+}
+.sticker-opt:hover{transform:translateY(-3px) scale(1.08)}
+.sticker-opt.selected{
+  border-color:#ff9ec4;background:#fff0f7;
+  box-shadow:0 0 0 4px rgba(255,158,196,.2);transform:scale(1.06);
+}
+.color-opt{
+  width:40px;height:40px;border-radius:50%;cursor:pointer;
+  border:3px solid #fff;box-shadow:0 0 0 2px #ffe0ee;transition:.18s;
+}
+.color-opt:hover{transform:scale(1.12)}
+.color-opt.selected{box-shadow:0 0 0 3px var(--pink);transform:scale(1.12)}
+
+/* ---------- preview ---------- */
+.preview-wrap{position:sticky;top:90px}
+.note-preview{
+  border-radius:20px;padding:24px 22px 20px;min-height:200px;
+  display:flex;flex-direction:column;gap:10px;position:relative;
+  box-shadow:0 14px 30px rgba(180,140,180,.22);
+  transform:rotate(-1.6deg);transition:background .25s;
+}
+.note-preview .pv-sticker{position:absolute;top:-16px;right:-12px;font-size:2.2rem;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.1))}
+.note-preview .pv-to{font-weight:700;font-size:.9rem;opacity:.7}
+.note-preview .pv-msg{flex:1;white-space:pre-wrap;line-height:1.55;font-size:1.02rem;word-break:break-word}
+.note-preview .pv-from{text-align:right;font-weight:700;font-size:.9rem;opacity:.75}
+.write-layout{display:grid;grid-template-columns:1.25fr .9fr;gap:26px;align-items:start}
+@media(max-width:820px){.write-layout{grid-template-columns:1fr}.preview-wrap{position:static}}
+
+/* ---------- notes wall ---------- */
+.wall-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.count-pill{background:#fff;border:2px solid #ffe0ee;border-radius:999px;padding:8px 18px;font-weight:700;font-size:.88rem}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:26px 20px}
+.note{
+  position:relative;border-radius:20px;padding:26px 20px 18px;
+  display:flex;flex-direction:column;gap:10px;min-height:190px;
+  box-shadow:0 12px 26px rgba(180,140,180,.2);
+  transition:transform .25s, box-shadow .25s;
+}
+.note:hover{transform:translateY(-7px) rotate(0deg) scale(1.02)!important;box-shadow:0 20px 40px rgba(180,140,180,.28);z-index:5}
+.note .sticker{position:absolute;top:-16px;right:-12px;font-size:2.3rem;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.1));transition:transform .3s}
+.note:hover .sticker{transform:rotate(14deg) scale(1.12)}
+.note .to{font-weight:700;font-size:.88rem;opacity:.7}
+.note .msg{flex:1;white-space:pre-wrap;line-height:1.55;font-size:.98rem;word-break:break-word}
+.note .from{text-align:right;font-weight:700;font-size:.88rem;opacity:.75}
+.note .del{
+  position:absolute;bottom:10px;left:12px;border:none;background:rgba(255,255,255,.75);
+  border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:.85rem;
+  opacity:0;transition:.2s;display:flex;align-items:center;justify-content:center;
+}
+.note:hover .del{opacity:1}
+.note .del:hover{background:#fff;transform:scale(1.15)}
+
+.empty{
+  text-align:center;padding:50px 20px;display:none;
+}
+.empty .big{font-size:4rem;display:block;margin-bottom:12px;animation:bob 3s ease-in-out infinite}
+
+/* ---------- surprise ---------- */
+.gift-stage{text-align:center;padding:30px 0 10px}
+.gift{
+  font-size:clamp(6rem,20vw,9rem);cursor:pointer;display:inline-block;
+  transition:transform .3s;filter:drop-shadow(0 18px 22px rgba(200,140,190,.35));
+  animation:bob 2.4s ease-in-out infinite;user-select:none;
+}
+.gift:hover{transform:scale(1.09) rotate(-6deg)}
+.gift.shake{animation:shake .55s ease}
+@keyframes shake{
+  0%,100%{transform:rotate(0) scale(1)}
+  20%{transform:rotate(-14deg) scale(1.08)}
+  40%{transform:rotate(12deg) scale(1.12)}
+  60%{transform:rotate(-10deg) scale(1.15)}
+  80%{transform:rotate(8deg) scale(1.2)}
+}
+.hint{margin-top:18px;font-weight:700;opacity:.7;font-size:1rem}
+.letter-stage{display:none}
+.letter-stage.show{display:block;animation:unfold .8s cubic-bezier(.22,1,.36,1)}
+@keyframes unfold{
+  from{opacity:0;transform:scale(.7) rotate(-4deg)}
+  to{opacity:1;transform:scale(1) rotate(0)}
+}
+.letter{
+  text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#fffdfa,#fff5fb);
+}
+.letter::before{
+  content:"";position:absolute;inset:12px;border:2px dashed #ffd9e8;border-radius:22px;pointer-events:none;
+}
+.letter-inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:18px;align-items:center}
+.letter p{line-height:1.75;font-size:1.05rem;max-width:560px}
+.cake-row{font-size:2.6rem;letter-spacing:6px;animation:bob 3s ease-in-out infinite}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,120%);
+  background:#fff;border:2px solid #ffd9e8;color:var(--ink);
+  padding:14px 26px;border-radius:999px;font-weight:700;z-index:999;
+  box-shadow:0 14px 34px rgba(200,140,190,.32);transition:transform .4s cubic-bezier(.22,1,.36,1);
+  white-space:nowrap;
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* ---------- confetti ---------- */
+.confetti{position:fixed;top:-12vh;z-index:998;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{
+  to{transform:translateY(125vh) rotate(760deg);opacity:.85}
+}
+
+footer{text-align:center;padding:10px 20px 40px;font-size:.85rem;opacity:.6;position:relative;z-index:1}
+</style>
+</head>
+<body>
+
+<!-- floating background stickers -->
+<div class="bg-stickers" id="bgStickers"></div>
+
+<nav>
+  <div class="navbar">
+    <button data-nav="home" class="active">🏠 Home</button>
+    <button data-nav="write">✏️ Write a Note</button>
+    <button data-nav="wall">💌 Notes Wall</button>
+    <button data-nav="surprise">🎁 Surprise</button>
+    <button class="music-btn" id="musicBtn" title="Play birthday tune">🎵</button>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<section class="page active" id="page-home">
+  <div class="card hero">
+    <span class="badge">🎉 A tiny website made with love 🎉</span>
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday,<br><span class="gradient-text" id="homeName">Beautiful!</span></h1>
+    <p class="sub">
+      I built you a whole little corner of the internet 💕<br>
+      Write down everything you want to say, stick it on the wall,<br>
+      and don't forget to open your surprise at the end.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" data-nav="write">✏️ Write a note</button>
+      <button class="btn btn-soft" data-nav="wall">💌 See the wall</button>
+      <button class="btn btn-soft" data-nav="surprise">🎁 Open surprise</button>
+    </div>
+    <p class="sub" style="font-size:.88rem;opacity:.6;margin-top:6px">
+      Psst — your notes are saved right in your browser, so they'll still be here tomorrow 🌸
+    </p>
+  </div>
+</section>
+
+<!-- ============ WRITE ============ -->
+<section class="page" id="page-write">
+  <div class="card">
+    <h2 style="margin-bottom:6px">✏️ Write a birthday note</h2>
+    <p class="sub" style="margin-bottom:24px">Fill this in and it'll appear on the notes wall 💌</p>
+
+    <div class="write-layout">
+      <form id="noteForm" autocomplete="off">
+        <div class="form-row">
+          <div class="field">
+            <label>💗 To</label>
+            <input type="text" id="toInput" placeholder="Her name" maxlength="24">
+          </div>
+          <div class="field">
+            <label>✍️ From</label>
+            <input type="text" id="fromInput" placeholder="Your name" maxlength="24">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>💌 Your message</label>
+          <textarea id="msgInput" placeholder="Write something sweet, funny, or both..." maxlength="320"></textarea>
+        </div>
+
+        <div class="field">
+          <label>🎀 Pick a sticker</label>
+          <div class="picker" id="stickerPicker">
+            <button type="button" class="sticker-opt selected" data-sticker="🎀">🎀</button>
+            <button type="button" class="sticker-opt" data-sticker="🌸">🌸</button>
+            <button type="button" class="sticker-opt" data-sticker="🍰">🍰</button>
+            <button type="button" class="sticker-opt" data-sticker="🎈">🎈</button>
+            <button type="button" class="sticker-opt" data-sticker="🦋">🦋</button>
+            <button type="button" class="sticker-opt" data-sticker="🌷">🌷</button>
+            <button type="button" class="sticker-opt" data-sticker="🍓">🍓</button>
+            <button type="button" class="sticker-opt" data-sticker="⭐">⭐</button>
+            <button type="button" class="sticker-opt" data-sticker="🧸">🧸</button>
+            <button type="button" class="sticker-opt" data-sticker="🍭">🍭</button>
+            <button type="button" class="sticker-opt" data-sticker="💖">💖</button>
+            <button type="button" class="sticker-opt" data-sticker="🌈">🌈</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>🎨 Pick a color</label>
+          <div class="picker" id="colorPicker"></div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">💌 Stick it on the wall</button>
+          <button type="button" class="btn btn-soft" id="clearForm">🧹 Clear</button>
+        </div>
+      </form>
+
+      <div class="preview-wrap">
+        <p style="font-weight:700;margin-bottom:12px;font-size:.92rem">👀 Live preview</p>
+        <div class="note-preview" id="notePreview">
+          <span class="pv-sticker" id="pvSticker">🎀</span>
+          <div class="pv-to" id="pvTo">To: my favourite person</div>
+          <div class="pv-msg" id="pvMsg">Your sweet message will show up here as you type... ✨</div>
+          <div class="pv-from" id="pvFrom">— me</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WALL ============ -->
+<section class="page" id="page-wall">
+  <div class="wall-head">
+    <div>
+      <h2>💌 The Notes Wall</h2>
+      <p class="sub" style="font-size:.95rem">Every little note, all in one place</p>
+    </div>
+    <span class="count-pill" id="countPill">0 notes</span>
+  </div>
+
+  <div class="notes-grid" id="notesGrid"></div>
+
+  <div class="empty card" id="emptyWall">
+    <span class="big">🕊️</span>
+    <h3>It's a little quiet here...</h3>
+    <p class="sub" style="margin:10px 0 20px">No notes yet! Be the first to write something sweet.</p>
+    <button class="btn btn-primary" data-nav="write">✏️ Write the first note</button>
+  </div>
+</section>
+
+<!-- ============ SURPRISE ============ -->
+<section class="page" id="page-surprise">
+  <div class="card">
+    <div class="gift-stage" id="giftStage">
+      <h2 style="margin-bottom:10px">🎁 One last thing...</h2>
+      <p class="sub" style="margin-bottom:26px">There's something waiting for you in here.</p>
+      <div class="gift" id="giftBox">🎁</div>
+      <p class="hint">👆 tap the gift to open it</p>
+    </div>
+
+    <div class="letter-stage" id="letterStage">
+      <div class="letter card">
+        <div class="letter-inner">
+          <div class="cake-row">🎈🎂🎈</div>
+          <h1 class="gradient-text" style="font-size:clamp(1.9rem,5vw,3rem)">
+            Happy Birthday, <span id="friendName">Beautiful</span>!
+          </h1>
+          <p>
+            Thank you for being the kind of friend who makes ordinary days feel like
+            a celebration. 🌷<br><br>
+            I hope this year brings you soft mornings, loud laughter, little
+            victories, and every single thing you've been quietly wishing for. 🍰<br><br>
+            You deserve all the confetti in the world — so here's some more. 💖
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+            <button class="btn btn-primary" id="moreConfetti">🎊 More confetti!</button>
+            <button class="btn btn-soft" data-nav="write">✏️ Write another note</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>made with 💕 just for you</footer>
+<div class="toast" id="toast">Note added! 💌</div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const NOTES_KEY = 'birthday-notes-v1';
+const NAME_KEY  = 'birthday-friend-name';
+const SEED_KEY  = 'birthday-seeded-v1';
+
+const COLORS = ['#ffe3ef','#e6dcff','#d9f5e9','#fff3c4','#ffe0cc','#dceeff','#ffe6f7','#e2f0ff'];
+
+let notes = [];
+try { notes = JSON.parse(localStorage.getItem(NOTES_KEY) || '[]'); } catch(e){ notes = []; }
+
+function saveNotes(){
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch(e){}
+}
+
+/* seed one sample note the first time */
+if(!localStorage.getItem(SEED_KEY)){
+  notes.push({
+    id: Date.now(),
+    to: 'My Favourite Person',
+    from: 'Your Bestie',
+    msg: 'This is a sample note — delete me and write your own! 🎀',
+    sticker: '🌸',
+    color: '#ffe3ef',
+    rot: -1.6
+  });
+  saveNotes();
+  localStorage.setItem(SEED_KEY, '1');
+}
+
+/* =========================================================
+   BACKGROUND STICKERS
+   ========================================================= */
+(function buildBg(){
+  const emojis = ['🎀','🌸','🍰','🎈','🦋','🌷','⭐','🍓','🧸','🍭','💖','🌈','✨','🎉'];
+  const box = document.getElementById('bgStickers');
+  const positions = [
+    [4,8],[92,12],[8,30],[88,38],[3,58],[94,62],[12,80],[86,85],
+    [46,4],[52,92],[30,16],[68,22],[20,48],[76,52],[38,68],[60,74]
+  ];
+  positions.forEach(([x,y],i)=>{
+    const s = document.createElement('span');
+    s.textContent = emojis[i % emojis.length];
+    s.style.left = x + 'vw';
+    s.style.top  = y + 'vh';
+    s.style.fontSize = (16 + Math.random()*20) + 'px';
+    s.style.animationDelay = (Math.random()*6).toFixed(2) + 's';
+    s.style.animationDuration = (6 + Math.random()*5).toFixed(2) + 's';
+    box.appendChild(s);
+  });
+})();
+
+/* =========================================================
+   ROUTING
+   ========================================================= */
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.toggle('active', p.id === 'page-' + page);
+  });
+  document.querySelectorAll('[data-nav]').forEach(b=>{
+    if(b.closest('.navbar')) b.classList.toggle('active', b.dataset.nav === page);
+  });
+  if(location.hash !== '#' + page) history.replaceState(null, '', '#' + page);
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(page === 'wall') renderNotes();
+  if(page === 'surprise') updateFriendName();
+}
+
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('[data-nav]');
+  if(btn){ go(btn.dataset.nav); }
+});
+
+window.addEventListener('hashchange', ()=>{
+  const p = location.hash.replace('#','') || 'home';
+  go(p);
+});
+
+/* =========================================================
+   WRITE PAGE
+   ========================================================= */
+let selectedSticker = '🎀';
+let selectedColor   = COLORS[0];
+
+/* build color swatches */
+const colorPicker = document.getElementById('colorPicker');
+COLORS.forEach((c,i)=>{
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'color-opt' + (i === 0 ? ' selected' : '');
+  b.style.background = c;
+  b.dataset.color = c;
+  b.addEventListener('click', ()=>{
+    selectedColor = c;
+    document.querySelectorAll('.color-opt').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+    updatePreview();
+  });
+  colorPicker.appendChild(b);
+});
+
+/* sticker picker */
+document.getElementById('stickerPicker').addEventListener('click', e=>{
+  const b = e.target.closest('.sticker-opt');
+  if(!b) return;
+  selectedSticker = b.dataset.sticker;
+  document.querySelectorAll('.sticker-opt').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected');
+  updatePreview();
+});
+
+const toInput   = document.getElementById('toInput');
+const fromInput = document.getElementById('fromInput');
+const msgInput  = document.getElementById('msgInput');
+
+function esc(str){
+  return String(str).replace(/[&<>"']/g, m => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[m]);
+}
+
+function updatePreview(){
+  document.getElementById('pvSticker').textContent = selectedSticker;
+  document.getElementById('pvTo').textContent   = 'To: ' + (toInput.value.trim() || 'my favourite person');
+  document.getElementById('pvFrom').textContent = '— ' + (fromInput.value.trim() || 'me');
+  document.getElementById('pvMsg').textContent  = msgInput.value.trim() || 'Your sweet message will show up here as you type... ✨';
+  document.getElementById('notePreview').style.background = selectedColor;
+}
+
+[toInput, fromInput, msgInput].forEach(el => el.addEventListener('input', updatePreview));
+
+/* remember her name */
+toInput.addEventListener('input', ()=>{
+  const v = toInput.value.trim();
+  if(v) localStorage.setItem(NAME_KEY, v);
+  document.getElementById('homeName').textContent = v || 'Beautiful';
+});
+
+/* submit */
+document.getElementById('noteForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const msg = msgInput.value.trim();
+  if(!msg){
+    msgInput.focus();
+    msgInput.style.borderColor = '#ff7fb2';
+    showToast('Write a little message first 💕');
+    setTimeout(()=>{ msgInput.style.borderColor = ''; }, 1200);
+    return;
+  }
+  const note = {
+    id: Date.now() + Math.random(),
+    to: toInput.value.trim() || 'My Favourite Person',
+    from: fromInput.value.trim() || 'Someone who loves you',
+    msg,
+    sticker: selectedSticker,
+    color: selectedColor,
+    rot: +(Math.random() * 5 - 2.5).toFixed(2)
+  };
+  notes.push(note);
+  saveNotes();
+  localStorage.setItem(NAME_KEY, note.to);
+  document.getElementById('homeName').textContent = note.to;
+  confetti(28);
+  showToast('Note added to the wall! 💌');
+  msgInput.value = '';
+  updatePreview();
+  setTimeout(()=> go('wall'), 450);
+});
+
+document.getElementById('clearForm').addEventListener('click', ()=>{
+  toInput.value = ''; fromInput.value = ''; msgInput.value = '';
+  updatePreview();
+  toInput.focus();
+});
+
+/* =========================================================
+   NOTES WALL
+   ========================================================= */
+function renderNotes(){
+  const grid  = document.getElementById('notesGrid');
+  const empty = document.getElementById('emptyWall');
+  const pill  = document.getElementById('countPill');
+
+  pill.textContent = notes.length + (notes.length === 1 ? ' note' : ' notes');
+  grid.innerHTML = '';
+
+  if(notes.length === 0){
+    grid.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+  grid.style.display = 'grid';
+  empty.style.display = 'none';
+
+  notes.slice().reverse().forEach(n=>{
+    const el = document.createElement('div');
+    el.className = 'note';
+    el.style.background = n.color || COLORS[0];
+    el.style.transform = `rotate(${n.rot || 0}deg)`;
+    el.innerHTML = `
+      <span class="sticker">${esc(n.sticker || '🎀')}</span>
+      <div class="to">To: ${esc(n.to)}</div>
+      <div class="msg">${esc(n.msg)}</div>
+      <div class="from">— ${esc(n.from)}</div>
+      <button class="del" title="Delete note" data-id="${n.id}">🗑️</button>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+document.getElementById('notesGrid').addEventListener('click', e=>{
+  const btn = e.target.closest('.del');
+  if(!btn) return;
+  const id = btn.dataset.id;
+  notes = notes.filter(n => String(n.id) !== String(id));
+  saveNotes();
+  renderNotes();
+  showToast('Note deleted 🗑️');
+});
+
+/* =========================================================
+   SURPRISE PAGE
+   ========================================================= */
+function updateFriendName(){
+  const name = localStorage.getItem(NAME_KEY);
+  document.getElementById('friendName').textContent = name || 'Beautiful';
+  document.getElementById('homeName').textContent = name || 'Beautiful';
+}
+
+document.getElementById('giftBox').addEventListener('click', function(){
+  if(this.dataset.opened) return;
+  this.dataset.opened = '1';
+  this.classList.add('shake');
+  confetti(50);
+  setTimeout(()=>{
+    document.getElementById('giftStage').style.display = 'none';
+    document.getElementById('letterStage').classList.add('show');
+    confetti(80);
+    updateFriendName();
+    if(!musicPlaying) toggleMusic();
+  }, 600);
+});
+
+document.getElementById('moreConfetti').addEventListener('click', ()=>{
+  confetti(70);
+  showToast('🎊 Confetti attack! 🎊');
+});
+
+/* =========================================================
+   CONFETTI
+   ========================================================= */
+function confetti(count = 50){
+  const emojis = ['🎉','✨','💖','🎈','🌸','⭐','🎀','🍭','🦋','🌈'];
+  for(let i = 0; i < count; i++){
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (14 + Math.random() * 24) + 'px';
+    const dur = 2.6 + Math.random() * 2.2;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = (Math.random() * 0.7) + 's';
+    document.body.appendChild(el);
+    setTimeout(()=> el.remove(), (dur + 1.2) * 1000);
+  }
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer;
+function showToast(text){
+  const t = document.getElementById('toast');
+  t.textContent = text;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 2300);
+}
+
+/* =========================================================
+   BIRTHDAY TUNE (Web Audio)
+   ========================================================= */
+const NOTES_FREQ = {
+  C4:261.63, D4:293.66, E4:329.63, F4:349.23,
+  G4:392.00, A4:440.00, Bb4:466.16, C5:523.25
+};
+const MELODY = [
+  ['C4',.5],['C4',.5],['D4',1],['C4',1],['F4',1],['E4',2],
+  ['C4',.5],['C4',.5],['D4',1],['C4',1],['G4',1],['F4',2],
+  ['C4',.5],['C4',.5],['C5',1],['A4',1],['F4',1],['G4',1],['F4',2],
+  ['Bb4',.5],['Bb4',.5],['A4',1],['F4',1],['G4',1],['F4',2]
+];
+
+let audioCtx = null;
+let musicPlaying = false;
+let stopTimer = null;
+
+function toggleMusic(){
+  const btn = document.getElementById('musicBtn');
+  if(musicPlaying){
+    if(audioCtx){ audioCtx.close(); audioCtx = null; }
+    clearTimeout(stopTimer);
+    musicPlaying = false;
+    btn.textContent = '🎵';
+    btn.title = 'Play birthday tune';
+    return;
+  }
+  try{
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }catch(e){ showToast('Audio not supported here 😢'); return; }
+
+  musicPlaying = true;
+  btn.textContent = '🔇';
+  btn.title = 'Stop music';
+
+  const beat = 0.42;
+  let t = audioCtx.currentTime + 0.12;
+
+  MELODY.forEach(([note, dur]) => {
+    const length = dur * beat;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.value = NOTES_FREQ[note];
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.linearRampToValueAtTime(0.16, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + length * 0.92);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(t);
+    osc.stop(t + length);
+    t += length;
+  });
+
+  const total = (t - audioCtx.currentTime) * 1000;
+  stopTimer = setTimeout(()=>{
+    musicPlaying = false;
+    btn.textContent = '🎵';
+    btn.title = 'Play birthday tune';
+    if(audioCtx){ audioCtx.close(); audioCtx = null; }
+  }, total + 300);
+}
+
+document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(function init(){
+  updateFriendName();
+  updatePreview();
+  renderNotes();
+  const start = location.hash.replace('#','') || 'home';
+  const valid = ['home','write','wall','surprise'];
+  go(valid.includes(start) ? start : 'home');
+})();
+</script>
+</body>
+</html>
